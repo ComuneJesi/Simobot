@@ -5,6 +5,18 @@ import os
 from pathlib import Path
 import sys
 
+from pathlib import Path
+import shutil
+
+DOWNLOADS_DIR = Path("./downloads")
+
+# Svuota completamente la cartella downloads all'avvio per evitare file residui
+if DOWNLOADS_DIR.exists():
+    shutil.rmtree(DOWNLOADS_DIR)
+    print("🗑️ Cartella downloads ripulita dai file precedenti.", flush=True)
+
+DOWNLOADS_DIR.mkdir(parents=True, exist_ok=True)
+
 # --- CONFIGURAZIONE VIA VARIABILI D'AMBIENTE ---
 IMAP_SERVER = os.getenv("IMAP_SERVER", "imap.gmail.com")  # Default per Gmail
 EMAIL_USER = os.getenv("EMAIL_USER")
